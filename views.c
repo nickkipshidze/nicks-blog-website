@@ -12,14 +12,14 @@ char *viewRoot(char *request, size_t *reslen) {
     char *indexHTMLContent = NULL;
     readFile("./static/index.html",  &indexHTMLContent);
 
-    *reslen = strlen(HTTPBody) + strlen(indexHTMLContent) + 1;
-    char *response = (char *) malloc(*reslen);
+    *reslen = strlen(HTTPBody) + strlen(indexHTMLContent);
+    char *response = (char *) malloc(*reslen + 1);
     response[0] = '\0';
 
     strcat(response, HTTPBody);
     strcat(response, indexHTMLContent);
-
     free(indexHTMLContent);
+
     return response;
 }
 
@@ -29,14 +29,14 @@ char *viewNotFound(char *request, size_t *reslen) {
     char *notfoundHTMLContent = NULL;
     readFile("./static/404.html",  &notfoundHTMLContent);
 
-    *reslen = strlen(HTTPBody) + strlen(notfoundHTMLContent) + 1;
-    char *response = (char *) malloc(*reslen);
+    *reslen = strlen(HTTPBody) + strlen(notfoundHTMLContent);
+    char *response = (char *) malloc(*reslen + 1);
     response[0] = '\0';
 
     strcat(response, HTTPBody);
     strcat(response, notfoundHTMLContent);
-
     free(notfoundHTMLContent);
+
     return response;
 }
 
@@ -57,20 +57,22 @@ char *viewFavicon(char *request, size_t *reslen) {
     return response;
 }
 
-char *viewStyleCSS(char *request, size_t *reslen) {
-    const char HTTPBody[] = "HTTP/1.1 200 OK\nContent-Type: text/css\n\n";
+char *viewFileResponse(char *request, char *contentType, char *filename, size_t *reslen) {
+    char HTTPBodyBase[] = "HTTP/1.1 200 OK\nContent-Type: %s\n\n";
+    char HTTPBody[256];
+    snprintf(HTTPBody, sizeof(HTTPBody), HTTPBodyBase, contentType);
 
-    char *styleCSSContent = NULL;
-    readFile("./static/style.css", &styleCSSContent);
+    char *fileContent = NULL;
+    long filesize = readBinFile(filename, &fileContent);
 
-    *reslen = strlen(HTTPBody) + strlen(styleCSSContent) + 1;
+    *reslen = strlen(HTTPBody) + filesize;
     char *response = (char *) malloc(*reslen + 1);
     response[0] = '\0';
 
     strcat(response, HTTPBody);
-    strcat(response, styleCSSContent);
+    memcpy(response + strlen(HTTPBody), fileContent, filesize);
+    free(fileContent);
 
-    free(styleCSSContent);
     return response;
 }
 
@@ -88,8 +90,20 @@ char *routeRequest(char *request, size_t *reslen) {
             response = viewRoot(request, reslen);
         if (strcmp(path, "/favicon.ico") == 0)
             response = viewFavicon(request, reslen);
-        if (strcmp(path, "/style.css") == 0)
-            response = viewStyleCSS(request, reslen);
+        if (strcmp(path, "/global.css") == 0)
+            response = viewFileResponse(request, "text/css", "./static/global.css", reslen);
+        if (strcmp(path, "/home.css") == 0)
+            response = viewFileResponse(request, "text/css", "./static/home.css", reslen);
+            
+        if (strcmp(path, "/tiny5.ttf") == 0)
+            response = viewFileResponse(request, "font/ttf", "./static/tiny5.ttf", reslen);
+        if (strcmp(path, "/terminus.ttf") == 0)
+            response = viewFileResponse(request, "font/ttf", "./static/terminus.ttf", reslen);
+
+        if (strcmp(path, "/blog/building-a-web-server-with-c") == 0)
+            response = viewFileResponse(request, "text/html", "./static/blog/building-a-web-server-with-c.html", reslen);
+        if (strcmp(path, "/blog/my-first-time-with-arch") == 0)
+            response = viewFileResponse(request, "text/html", "./static/blog/my-first-time-with-arch.html", reslen);
     }
 
     if ((int)*reslen == -1 || response == NULL){
