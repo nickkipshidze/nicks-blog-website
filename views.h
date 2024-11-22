@@ -11,6 +11,6 @@ char *viewNotFound(char *request, size_t *reslen);
 
 char *viewFavicon(char *request, size_t *reslen);
 
-char *viewStyleCSS(char *request, size_t *reslen);
+char *viewFileResponse(char *request, char *contentType, char *filename, size_t *reslen);
 
 #endif
