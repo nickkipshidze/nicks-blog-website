@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Nick's Blog | Building a web server with C</title>
+        <link rel="stylesheet" href="/global.css">
+        <link rel="stylesheet" href="/home.css">
+    </head>
+    <body>
+        <span style="color: #CDBC5C;">-----&gt Nick's blog website</span><br>
+        <br>
+        <span>[ + ] Welcome to the blog page for:</span><br>
+        <br>
+        <span>================ BUILDING A WEB SERVER WITH C ================</span><br>
+        <br>
+        <span style="color: #6E92F2;">[ DESC ] In this blog I will talk about how and why I build a whole blog page using only the C programming language. I will not touch on my mental state while working on this, but you can surely tell. This is also my first time writing a blog, EVER! So... if it sucks I wouldn't be surprised.</span><br>
+        <br>
+
+        <span style="color: #CDBC5C;">[ SUBTITLE ] Introduction</span><br>
+        <span>---</span><br>
+        <span>Why the hell would anyone go through the torture of writing a web server with C using the good old sys/socket.h library? Just why? Not only that, I had to implement the whole HTTP protocol myself. Of course I didn't do that... but I did implement a small bit of HTTP. As much as I needed for a basic functionality. Anyone! I'll try to keep on topic and get into the good stuff straight away. So then, let's start with why I would do this, or why anyone would do this.</span><br>
+        <br>
+
+        <span style="color: #CDBC5C;">[ SUBTITLE ] Why do this?</span><br>
+        <span>---</span><br>
+        <span>Beacuse I was bored! Or better answer: "Why not?" Answer with a question! Ah yes, the oldest trick in the book. For me though, I just wanted to learn more C. Just like Linus Torvalds said, C is the best language. Besides, I always wanted to make my own language, and I have done that in the past, but I have only built some silly interpreters and unusable gibberish. I am sure I CAN do it, but I just need a little bit more of that C language. And whenever I get bored of C, I can just make my own language to move to. So why not build a fun project to learn more C? And my web developer friend, George, told me to build a blog page. Unbeknownst to him, I WAS USING C! He thought I was running a server on Node, and using some cute NPM library. 2 GiB worth of ./node_modules and stuff. HELL NO! This whole project binary is 28 Kibibytes LOL! And meanwhile some nerd is staring at an endless pile of JavaScript warnings. I am over here staring at the output of the -fsanitize=address compiler flag. Better yet, this output stops the whole program, and spills out bunch of ABSOLUTELY MEANINGLESS stuff. But I have grown to understand it like my own native tongue! Ah yes! I speak in buffer overflows now. And memory managment issues. That's why I never write any error handling checks in my C. I want to SMELL and FEEL the errors myself. Just like driving one of those cars with manual gear shifts, or something. So I think that's already of a good enough reason. So let's move on to how I did it.</span><br>
+        <br>
+
+        <span style="color: #CDBC5C;">[ SUBTITLE ] How did I do it?</span><br>
+        <span>---</span><br>
+        <span>Learning to use sys/socket.h is not that hard. That is if you can get past the nature of C, which is that you have to be explicit with everything. And I can think of a pretty good analog for this.</span><br>
+        <br>
+        <span>If these programming languages were actual people, then Python would be a 5 year old who just returned from kindergarten. So when you are working with- oh yeah also this kid is chinese. So when you are working with kids, that don't even talk your language, you have to explain everything from the bottom. But this 5 year old already knows a thing or two, so you don't have to explain as much. But little Cina over here, who just returned from the womb... He doesn't know much of anything! This kid would be the C language. You better teach everything from the GROUND UP. So you have to talk a lot with C. But it's nothing hard or complicated, just explicit.</span><br>
+        <br>
+        <span>So when learning C code, compress large blocks of code into smaller concepts. To start a server at localhost on port 8000, you have to write something like 20+ lines of code, if you are being generous with your endlines, but it's nothing complicated about it, just some syntax complications. And that's how I went through the documentation for this library and just memorized the concepts and order of operations to start a server! And from there you don't have to even work with sockets as much. From there it's just HTTP. Hyper-text transfer protocol! You know it! The best protocol. I already knew the bulk of HTTP, so it was easy enough for me. But if you are new to how networking works, and all the nonsense protocols like TCP and UDP, on which the HTTP is built on, it will be difficult.</span><br>
+        <br>
+        <span>SO HOW DO I DO IT?! You may be asking. And to summarize I would say that all you need to do is:</span><br>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Learn some networking;</span><br>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Learn how HTTP works;</span><br>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Learn the actual C language;</span><br>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Read the docs for sys/socket.h;</span><br>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Write some code.</span><br>
+        <br>
+        <span>And even if you don't like reading the docs. There's a nice YouTube tutorial I found, and just that one video is enough to get you started for building much of anything! Here's your silly little link to it: <a href="https://youtu.be/mStnzIEprH8">youtu.be/mStnzIEprH8</a>. I couldn't find the first part video LOL. I also have both parts uploaded on my website: <a href="http://robot.nick.ge:2/view/8MB5T3TBP6UZN2O7">robot.nick.ge:2/view/8MB5T3TBP6UZN2O7</a>. Although I rarely have my server running. Anyway, that's about it. See ya next time.</span><br>
+        <br>
+
+        <br><br>
+        <span>EOF</span><br>
+    </body>
+</html>
